@@ -52,24 +52,22 @@ sum = 0
 		stamps,savefile,tstamps=tstamps
 
 			;loop over all files in newdir 
-			for j=0, elem_new-1 do begin 
-			if tstamps[j] lt 2454470 then continue		
+			for j=0, elem_new-1 do begin 	
 				;restore area and lcc for each file 
 				restore, newfiles[j]
-
+				
 				arr_i[j] = core_intens 
 				arr_lcc[j] = lcc
 				
 			endfor
 
 		avg_arr[i] = mean(arr_lcc)
-
+		;calculate the linear regression 
 		fits = regress(tstamps,arr_i,yfit=yfit) 	
 		
 		;calculate rate of change 
 		rise = yfit[n_elements(yfit)-1]-yfit[0]
 		run = tstamps[n_elements(tstamps)-1]-tstamps[0]	
-
 		roc = rise/run
 
 		print, 'rate of change line : ' +strcompress(string(avg_arr[i]))
@@ -80,5 +78,5 @@ sum = 0
 print,sum
 ;reset to main directory 		
 cd, '/Users/evans/'
-stop
+
 end

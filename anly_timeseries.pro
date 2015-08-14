@@ -1,7 +1,7 @@
 ;NAME: 
-;timeseries_anly.pro 
+;anly_timeseries.pro 
 ;PUROPSE: 
-;plot a linear regression of spectral lines in the specified band
+;plot a linear regression of spectral lines in the specified band. 
 ;BY: 
 ;Kaitlin Evans 
 ;-
@@ -16,7 +16,7 @@ read,band, prompt='Which band would you line to plot? '
 maindir = '/users/evans/iss_data/'+band+'/'
 cd,maindir
 
-;search for all subdirectories that begin with output (these contain the .sav files)  
+;search for all subdirectories that begin with "output" (these contain the .sav files)  
 datadir = file_search('output*')
 
 ;find number of subdirectories 
@@ -35,6 +35,7 @@ avg_arr = dblarr(elem_datadir)
 
 ;create pointer array to store scaled yfit values 
 fit_scale = ptrarr(elem_datadir) 
+
 	;loop over all subdirectories 
 	for i=0, elem_datadir-1 do begin
 
@@ -90,29 +91,23 @@ fit_scale = ptrarr(elem_datadir)
 	endfor	
 
 ;reset to main directory 		
-;cd, '/Users/evans/'
+cd, '/Users/evans/'
+avg_arr_str = string(avg_arr)
+device, decompose=0
+loadct,0, /silent
+colors= ['blue','black','green','purple','crimson','dark orange','Fuchsia']
+plot1= plot(tstamps,*fit_scale[0], xtickformat='LABEL_DATE', ytitle='Area',title='Linear Fits '+band,xtitle= 'Time (Month/Year)',/nodata) 
 
-;ldevice, decompose=0
-;loadct,0, /silent
+l=0
+loadct,13, /silent
+	for l=0, elem_datadir-1 do begin 
+		plot2=plot(tstamps,*fit_scale[l],color=colors[l],/overplot)
+	endfor 
+leg=legend(label=str_avg_arr,auto_text_color=1)
 
-;;create string array for plot legend 
-;str_avg_arr = string(avg_arr)
-
-;colors= indgen(elem_datadir)*250/elem_datadir
-;set_plot,'PS'
-;!P.FONT=1
-;device,filename='/Users/evans/iss_data/area_curves'+band+'.eps',/color
-;plot,tstamps, *fit_scale[0],yrange=[.8,1.2],font=16, xtickformat='LABEL_DATE', ytitle = 'Area', xtitle='Time(Year/Month/Day)', title = 'Area Linear Fit Over Time Band: '+band,/nodata 
-
-
-;l=0	
- ;loadct,11,/silent
-  ;     		;over plot yfit vs. time for the rest of the data 
-;	        for l=0, elem_datadir-1 do begin
-;		     oplot,tstamps, *fit_scale[l], color=colors[l] 
-;	     	 
-;		endfor
-;legend,str_avg_arr,textcolor=colors
-;device,/close
-;set_plot,'X'
+m=0
+	for m=0, elem_datadir-1 do begin 
+		leg[m].label=avg_arr_str[m]
+	endfor
+plot2.save,'/users/evans/iss_data/paperplots/lin_regression'+band+'.eps'
 end

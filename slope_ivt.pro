@@ -73,9 +73,9 @@ avg_arr = dblarr(elem_datadir)
 
 
 cd,'/Users/evans/'
-
+;calculate linear reggression 
 fits = regress(tstamps, arr_intense,yfit=yfit)
-
+;calculate rate of change
 rise = yfit[n_elements(yfit)-1]-yfit[0]
 run = tstamps[n_elements(tstamps)-1]-tstamps[0] 
 roc = rise/run

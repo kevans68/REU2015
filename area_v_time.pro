@@ -45,7 +45,7 @@ i=0
 		restore, savdir+b_sav
 		areas[i] = area
 	endfor
-	;plot area vs. timerd_fe_line_output 
+	;plot area vs. time 
 	date = label_date(date_format=['%Z/%N/%D'])
 	loadct,0,/silent
 	plot, stamps,areas,xtitle='Date (Year/Month/Day)', ytitle='Area', title=subtitle, xtickformat = 'LABEL_DATE', PSYM=SYM(1), SYMSIZE=0.25, yrange = [1e-5,3e-4],font=14

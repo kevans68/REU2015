@@ -12,7 +12,7 @@
 @year_smooth
 band=''
 bandinfo=''
-read,band,PROMPT='which band would you like to plot? '
+read,band,PROMPT='which band would you like to plot?(example input: C_I_Band or Mn_I_Band'
 
 ;set main directory to search for data 
 maindir = '/users/evans/iss_data/'+band+'/'
@@ -67,8 +67,6 @@ area_yr =ptrarr(elem_datadir)
 			endfor 
 		
 		;create an array of average lcc values(one lcc value per dataset) 
-
-	
 		avg_arr[i]=mean(arr_lcc) 
 		avg_arr2 = [[0],avg_arr]
 		avg_arr_str =strcompress(string(avg_arr))
@@ -100,7 +98,6 @@ cd,'/Users/evans/'
 decompose = 0
 loadct,0,/silent
 
-;!P.FONT=1
 ;set up plot 
 
 plot1=plot(tstamps, arr_area,yrange=[0,2.5],xtitle='Date (Month/Year)', ytitle='Normalized Area',title='Normalized Area vs. Time Smoothed Over 1/2 Year (Band:'+band+')',xtickformat = 'LABEL_DATE',FONT=18,FONT_STYLE=1,window_title='1/2 year', /nodata)
@@ -115,7 +112,7 @@ j=0
 		
 	endfor
 
-;plot2.save,'/users/evans/iss_data/area_halfyear'+band+'.eps'
+plot2.save,'/users/evans/iss_data/area_halfyear'+band+'.eps'
 leg=legend(label=(avg_arr),auto_text_color=1,units='nm')
 
 l=0 

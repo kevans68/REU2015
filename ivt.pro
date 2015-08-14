@@ -110,17 +110,17 @@ m=0
 
 plot2.save, '/users/evans/iss_data/paperplots/ivtyear'+band+'.eps'
 
-;l=0
+l=0
 
-;plot3=plot(tstamps,arr_intense,xtitle='Date (Month/Day/Year)', ytitle='Intensity',title='Core Intensity vs. Time Smoothed over 1/2 Year (Band: '+band+')',xtickformat = 'LABEL_DATE',FONT=12,yrange=[0.8,1.15],window_title='I 1/2 year',/nodata)
-;	for l=0,elem_datadir-1 do begin 
-;		plot4=plot(tstamps,*intens_scaleh[l],thick=3,/overplot)
-;	endfor
+plot3=plot(tstamps,arr_intense,xtitle='Date (Month/Day/Year)', ytitle='Intensity',title='Core Intensity vs. Time Smoothed over 1/2 Year (Band: '+band+')',xtickformat = 'LABEL_DATE',FONT=12,yrange=[0.8,1.15],window_title='I 1/2 year',/nodata)
+	for l=0,elem_datadir-1 do begin 
+		plot4=plot(tstamps,*intens_scaleh[l],thick=3,/overplot)
+	endfor
 
-;	leg=legend(label=avg_arr,auto_text_color=1)
-;n=0
-;	for n=0, elem_datadir-1 do begin 
-;		leg[n].label=avg_arr_str[n]
-;	endfor
+	leg=legend(label=avg_arr,auto_text_color=1)
+n=0
+	for n=0, elem_datadir-1 do begin 
+		leg[n].label=avg_arr_str[n]
+	endfor
 
 end

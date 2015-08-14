@@ -31,7 +31,6 @@ set_plot,'PS'
 device, filename='/users/evans/iss_data/comp_aa.eps',/color,/encapsulated
 device, xsize= 15, ysize=15
 device, bits_per_pixel=8
-strempty=strarr(elem_area)
 
 ;create grid 
 contour,corr_block,xax,yax,title= 'Correlation Coefficients: Area-Area', ticklen=1.0,xtickinterval=1,ytickinterval=1,xtickname=replicate(' ',30) ,ytickname=replicate(' ',30),xminor=1,yminor=1,/nodata 

@@ -20,7 +20,7 @@
 ;-
 
 
-;( Find min value point 
+; Find min value point 
 LCarr  = where(yspl eq min(yspl))
 LC = LCarr[0] 
 num = 15

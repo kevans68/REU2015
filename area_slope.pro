@@ -64,7 +64,7 @@ sum = 0
 			endfor
 
 		avg_arr[i] = mean(arr_lcc)
-
+		;calculate linear regression
 		fits = regress(tstamps,arr_area,yfit=yfit) 	
 		
 		;calculate rate of change 
@@ -81,5 +81,5 @@ sum = 0
 print,sum
 ;reset to main directory 		
 cd, '/Users/evans/'
-stop
+
 end

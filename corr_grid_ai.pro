@@ -58,7 +58,6 @@ xyouts,.98,.05,'1',/normal
 		for j=0,elem_area-1 do begin 
 			corr[j] = correlate(*area_info[i],*intensity_info[j])
 			corr_abs = abs(corr)
-			print, corr[j]
 		endfor
 		
 		;for each correlation find the color corresponding to the correlation value and fill 
